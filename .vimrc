@@ -18,8 +18,8 @@ language C
 set clipboard+=unnamed
 
 " Color
-hi Pmenu ctermbg=0
-hi PmenuSel ctermbg=4
+hi Pmenu ctermbg=2
+hi PmenuSel ctermbg=5
 "hi PmenuSbar ctermbg=2
 "hi PmenuThumb ctermfg=3
 
