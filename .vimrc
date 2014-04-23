@@ -53,9 +53,11 @@ Bundle 'gmarik/vundle'
 
 " original repos on github
 Bundle 'vim-ruby/vim-ruby'
-"Bundle 'Shougo/neocomplcache'
+Bundle 'Shougo/neocomplcache'
 Bundle 'Shougo/neocomplcache-rsense'
 Bundle 'Shougo/neosnippet'
+Bundle 'Shougo/unite.vim'
+Bundle 'Shougo/neomru.vim'
 Bundle 'scrooloose/nerdtree'
 Bundle 'tpope/vim-rails'
 Bundle 'taichouchou2/vim-rsense'
@@ -82,9 +84,22 @@ augroup cch
 augroup END
 
 " ------------------------------------
+" Unite
+" ------------------------------------
+let g:unite_enable_start_insert=1
+let g:unite_source_history_yank_enable =1
+let g:unite_source_file_mru_limit = 200
+nnoremap <silent> ,uy :<C-u>Unite history/yank<CR>
+nnoremap <silent> ,ub :<C-u>Unite buffer<CR>
+nnoremap <silent> ,uf :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
+nnoremap <silent> ,ur :<C-u>Unite -buffer-name=register register<CR>
+nnoremap <silent> ,uu :<C-u>Unite file_mru buffer<CR>
+
+" ------------------------------------
 " Neocomplcache
 " ------------------------------------
 let g:neocomplcache_enable_at_startup = 1
+let g:neocomplcache_force_overwrite_completefunc=1
 
 " Tab Complement
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
