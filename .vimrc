@@ -1,11 +1,15 @@
-"------------------------------------
-" vim Default Setting
-"------------------------------------
+" ------------------------------------
+" Vim Setting
+" ------------------------------------
 language C
-:syntax enable
-:set showmatch
-:set number
-:set noswapfile
+syntax on
+set number
+set showmode
+set showmatch
+set noswapfile
+set title
+set ruler
+set showmatch
 
 " Indent
 :set autoindent
@@ -23,20 +27,22 @@ hi PmenuSel ctermbg=5
 "hi PmenuSbar ctermbg=2
 "hi PmenuThumb ctermfg=3
 
-"------------------------------------
+" ------------------------------------
 " Pathogen
-"------------------------------------
+" ------------------------------------
 "call pathogen#runtime_append_all_bundles()
 "call pathogen#helptags()
 
-"------------------------------------
+" ------------------------------------
 " Vundle 
-"------------------------------------
+" ------------------------------------
 set nocompatible
 filetype off
 
-set rtp+=~/.vim/vundle.git/
+set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
+
+Bundle 'gmarik/vundle'
 
 " original repos on github
 Bundle 'vim-ruby/vim-ruby'
@@ -50,16 +56,15 @@ Bundle 'kana/vim-fakeclip.git'
 " vim-scripts repos
 Bundle 'project.tar.gz'
 
-
 " non github repos
 "Bundle 'git://git.wincent.com/command-t.git'
-
+Bundle 'git://git.code.sf.net/p/vim-latex/vim-latex'
 
 filetype plugin indent on
 
-"------------------------------------
+" ------------------------------------
 " Neocomplcache
-"------------------------------------
+" ------------------------------------
 let g:neocomplcache_enable_at_startup = 1
 
 " Tab Complement
@@ -75,9 +80,9 @@ function! s:my_crinsert()
 endfunction
 inoremap <silent> <CR> <C-R>=<SID>my_crinsert()<CR>
 
-"------------------------------------
+" ------------------------------------
 " Rails 
-"------------------------------------
+" ------------------------------------
 "let g:rails_level=4
 "let g:rails_default_file="app/controllers/application.rb"
 "let g:rails_default_database="sqlite3"
@@ -102,9 +107,9 @@ function! SetUpRubySetting()
 endfunction
 autocmd FileType ruby,eruby,ruby.rspec call SetUpRubySetting()
 
-"------------------------------------
+" ------------------------------------
 " vim -b : edit binary using xxd-format!
-"------------------------------------
+" ------------------------------------
 augroup Binary
   au!
   au BufReadPre  *.bin let &binary=1
@@ -127,3 +132,57 @@ let g:netrw_list_hide = 'CVS,\(^\|\s\s\)\zs\.\S\+'
 let g:netrw_altv = 1
 " 'o'でファイルを開くときは下側に開く。(デフォルトが上側なので入れ替え)
 let g:netrw_alto = 1
+
+" ------------------------------------
+" latex 
+" ------------------------------------
+"filetype plugin on
+"let tex_flavor = 'latex'
+"set grepprg=grep\ -nH\ $*
+"set shellslash
+""let g:Tex_DefaultTargetFormat = 'pdf' 
+"let g:Tex_CompileRule_dvi = 'platex --interaction=nonstopmode $*'
+"let g:Tex_CompileRule_pdf = 'dvipdfmx $*.dvi'
+"let g:Tex_FormatDependency_pdf = 'dvi,pdf'
+
+" from wiki http://oku.edu.mie-u.ac.jp/~okumura/texwiki/?Vim-LaTeX
+filetype plugin on
+filetype indent on
+set shellslash
+set grepprg=grep\ -nH\ $*
+let g:tex_flavor='latex'
+let g:Imap_UsePlaceHolders = 1
+let g:Imap_DeleteEmptyPlaceHolders = 1
+let g:Imap_StickyPlaceHolders = 0
+let g:Tex_DefaultTargetFormat = 'pdf'
+let g:Tex_FormatDependency_pdf = 'pdf'
+"let g:Tex_FormatDependency_pdf = 'dvi,pdf'
+"let g:Tex_FormatDependency_pdf = 'dvi,ps,pdf'
+let g:Tex_FormatDependency_ps = 'dvi,ps'
+let g:Tex_CompileRule_pdf = '/usr/texbin/ptex2pdf -l -ot "-synctex=1 -interaction=nonstopmode -file-line-error-style" $*'
+"let g:Tex_CompileRule_pdf = '/usr/texbin/ptex2pdf -l -u -ot "-synctex=1 -interaction=nonstopmode -file-line-error-style" $*'
+"let g:Tex_CompileRule_pdf = '/usr/texbin/pdflatex -synctex=1 -interaction=nonstopmode -file-line-error-style $*'
+"let g:Tex_CompileRule_pdf = '/usr/texbin/lualatex -synctex=1 -interaction=nonstopmode -file-line-error-style $*'
+"let g:Tex_CompileRule_pdf = '/usr/texbin/luajitlatex -synctex=1 -interaction=nonstopmode -file-line-error-style $*'
+"let g:Tex_CompileRule_pdf = '/usr/texbin/xelatex -synctex=1 -interaction=nonstopmode -file-line-error-style $*'
+"let g:Tex_CompileRule_pdf = '/usr/texbin/dvipdfmx $*.dvi'
+"let g:Tex_CompileRule_pdf = '/usr/local/bin/ps2pdf $*.ps'
+let g:Tex_CompileRule_ps = '/usr/texbin/dvips -Ppdf -o $*.ps $*.dvi'
+let g:Tex_CompileRule_dvi = '/usr/texbin/platex -synctex=1 -interaction=nonstopmode -file-line-error-style $*'
+"let g:Tex_CompileRule_dvi = '/usr/texbin/uplatex -synctex=1 -interaction=nonstopmode -file-line-error-style $*'
+let g:Tex_BibtexFlavor = '/usr/texbin/pbibtex'
+"let g:Tex_BibtexFlavor = '/usr/texbin/upbibtex'
+"let g:Tex_BibtexFlavor = '/usr/texbin/bibtex'
+"let g:Tex_BibtexFlavor = '/usr/texbin/bibtexu'
+let g:Tex_MakeIndexFlavor = '/usr/texbin/mendex $*.idx'
+"let g:Tex_MakeIndexFlavor = '/usr/texbin/makeindex $*.idx'
+"let g:Tex_MakeIndexFlavor = '/usr/texbin/texindy $*.idx'
+let g:Tex_UseEditorSettingInDVIViewer = 1
+let g:Tex_ViewRule_pdf = '/usr/bin/open -a Preview.app'
+"let g:Tex_ViewRule_pdf = '/usr/bin/open -a Skim.app'
+"let g:Tex_ViewRule_pdf = '/usr/bin/open -a TeXShop.app'
+"let g:Tex_ViewRule_pdf = '/usr/bin/open -a TeXworks.app'
+"let g:Tex_ViewRule_pdf = '/usr/bin/open -a Firefox.app'
+"let g:Tex_ViewRule_pdf = '/usr/bin/open -a "Adobe Reader.app"'
+let g:Tex_ViewRule_ps = '/usr/bin/open'
+let g:Tex_ViewRule_dvi = '/usr/bin/open'
