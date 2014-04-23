@@ -1,6 +1,6 @@
-" ------------------------------------
+" ==================================== 
 " Vim Setting
-" ------------------------------------
+" ==================================== 
 language C
 syntax on
 set number
@@ -10,6 +10,9 @@ set noswapfile
 set title
 set ruler
 set showmatch
+set cursorline
+set autoread
+"set textwidth=0
 
 " Indent
 :set autoindent
@@ -26,6 +29,10 @@ hi Pmenu ctermbg=2
 hi PmenuSel ctermbg=5
 "hi PmenuSbar ctermbg=2
 "hi PmenuThumb ctermfg=3
+
+" Edit vimrc
+command! Ev edit $MYVIMRC
+command! Rv source $MYVIMRC
 
 " ------------------------------------
 " Pathogen
@@ -46,7 +53,9 @@ Bundle 'gmarik/vundle'
 
 " original repos on github
 Bundle 'vim-ruby/vim-ruby'
-Bundle 'Shougo/neocomplcache'
+"Bundle 'Shougo/neocomplcache'
+Bundle 'Shougo/neocomplcache-rsense'
+Bundle 'Shougo/neosnippet'
 Bundle 'scrooloose/nerdtree'
 Bundle 'tpope/vim-rails'
 Bundle 'taichouchou2/vim-rsense'
@@ -63,6 +72,16 @@ Bundle 'git://git.code.sf.net/p/vim-latex/vim-latex'
 filetype plugin indent on
 
 " ------------------------------------
+" Cursorline 
+" ------------------------------------
+" draw cursorline only in current window
+augroup cch
+  autocmd! cch
+  autocmd WinLeave * set nocursorline
+  autocmd WinEnter,BufRead * set cursorline
+augroup END
+
+" ------------------------------------
 " Neocomplcache
 " ------------------------------------
 let g:neocomplcache_enable_at_startup = 1
@@ -70,11 +89,13 @@ let g:neocomplcache_enable_at_startup = 1
 " Tab Complement
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 
+imap <C-k> <Plug>(neocomplcache_snippets_expand)
+smap <C-k> <Plug>(neocomplcache_snippets_expand)
+
 " --------------------------------
 " endwise
 " -------------------------------
-
-" Neocomplcache
+" For Neocomplcache
 function! s:my_crinsert()
   return pumvisible() ? neocomplcache#close_popup() : "\<Cr>"
 endfunction
@@ -87,9 +108,9 @@ inoremap <silent> <CR> <C-R>=<SID>my_crinsert()<CR>
 "let g:rails_default_file="app/controllers/application.rb"
 "let g:rails_default_database="sqlite3"
 
-"------------------------------------
+" ------------------------------------
 " vim-rsense
-"------------------------------------
+" ------------------------------------
 " Rsense
 let g:rsenseUseOmniFunc = 1
 let g:rsenseHome = expand('~/.vim/ref/rsense-0.3')
