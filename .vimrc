@@ -63,6 +63,9 @@ Bundle 'tpope/vim-rails'
 Bundle 'taichouchou2/vim-rsense'
 Bundle 'tpope/vim-endwise.git'
 Bundle 'kana/vim-fakeclip.git'
+Bundle 'osyo-manga/vim-over'
+Bundle 'LeafCage/yankround.vim'
+Bundle 'kien/ctrlp.vim'
 
 " vim-scripts repos
 Bundle 'project.tar.gz'
@@ -227,3 +230,22 @@ let g:Tex_ViewRule_pdf = '/usr/bin/open -a Preview.app'
 "let g:Tex_ViewRule_pdf = '/usr/bin/open -a "Adobe Reader.app"'
 let g:Tex_ViewRule_ps = '/usr/bin/open'
 let g:Tex_ViewRule_dvi = '/usr/bin/open'
+
+" ------------------------------------
+" over
+" ------------------------------------
+nnoremap <silent> <Leader>m :OverCommandLine<CR>
+nnoremap sub :OverCommandLine<CR>%s/<C-r><C-w>//g<Left><Left>
+nnoremap subp y:OverCommandLine<CR>%s!<C-r>=substitute(@0, '!', '\\!', 'g')<CR>!!gI<Left><Left><Left>
+
+" ------------------------------------
+" yankround.vim
+" ------------------------------------
+nmap p <Plug>(yankround-p)
+nmap P <Plug>(yankround-P)
+nmap <C-p> <Plug>(yankround-prev)
+nmap <C-n> <Plug>(yankround-next)
+"" 履歴取得数
+let g:yankround_max_history = 50
+""履歴一覧(kien/ctrlp.vim)
+"nnoremap <silent>g<C-p> :<C-u>CtrlPYankRound<CR>
