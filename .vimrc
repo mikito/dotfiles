@@ -66,6 +66,7 @@ Bundle 'kana/vim-fakeclip.git'
 Bundle 'osyo-manga/vim-over'
 Bundle 'LeafCage/yankround.vim'
 Bundle 'kien/ctrlp.vim'
+Bundle 'tpope/vim-fugitive'
 
 " vim-scripts repos
 Bundle 'project.tar.gz'
@@ -252,3 +253,10 @@ nnoremap subp y:OverCommandLine<CR>%s!<C-r>=substitute(@0, '!', '\\!', 'g')<CR>!
 "let g:yankround_max_history = 50
 ""履歴一覧(kien/ctrlp.vim)
 "nnoremap <silent>g<C-p> :<C-u>CtrlPYankRound<CR>
+
+" ------------------------------------
+" vim-fugitive
+" ------------------------------------
+autocmd QuickFixCmdPost *grep* cwindow
+set statusline+=%{fugitive#statusline()}
+
