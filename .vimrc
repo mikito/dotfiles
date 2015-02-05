@@ -189,6 +189,8 @@ command! NT NERDTree
 "let g:Tex_CompileRule_dvi = 'platex --interaction=nonstopmode $*'
 "let g:Tex_CompileRule_pdf = 'dvipdfmx $*.dvi'
 "let g:Tex_FormatDependency_pdf = 'dvi,pdf'
+"
+let g:Tex_AutoFolding = 0
 
 " from wiki http://oku.edu.mie-u.ac.jp/~okumura/texwiki/?Vim-LaTeX
 filetype plugin on
