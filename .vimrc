@@ -10,7 +10,7 @@ set noswapfile
 set title
 set ruler
 set showmatch
-set cursorline
+"set cursorline
 set autoread
 "set textwidth=0
 
@@ -81,11 +81,11 @@ filetype plugin indent on
 " Cursorline 
 " ------------------------------------
 " draw cursorline only in current window
-augroup cch
-  autocmd! cch
-  autocmd WinLeave * set nocursorline
-  autocmd WinEnter,BufRead * set cursorline
-augroup END
+"augroup cch
+"  autocmd! cch
+"  autocmd WinLeave * set nocursorline
+"  autocmd WinEnter,BufRead * set cursorline
+"augroup END
 
 " ------------------------------------
 " Unite
