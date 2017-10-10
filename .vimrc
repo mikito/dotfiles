@@ -54,7 +54,7 @@ Bundle 'gmarik/vundle'
 " original repos on github
 Bundle 'vim-ruby/vim-ruby'
 Bundle 'Shougo/neocomplcache'
-Bundle 'Shougo/neocomplcache-rsense'
+"Bundle 'Shougo/neocomplcache-rsense'
 Bundle 'Shougo/neosnippet'
 Bundle 'Shougo/unite.vim'
 Bundle 'Shougo/neomru.vim'
@@ -67,6 +67,8 @@ Bundle 'osyo-manga/vim-over'
 Bundle 'LeafCage/yankround.vim'
 Bundle 'kien/ctrlp.vim'
 Bundle 'tpope/vim-fugitive'
+" See https://qiita.com/c8112002/items/94f6d89bbd0c2ffcd53b
+Bundle 'rking/ag.vim'
 
 " vim-scripts repos
 Bundle 'project.tar.gz'
@@ -131,21 +133,21 @@ inoremap <silent> <CR> <C-R>=<SID>my_crinsert()<CR>
 " vim-rsense
 " ------------------------------------
 " Rsense
-let g:rsenseUseOmniFunc = 1
-let g:rsenseHome = expand('~/.vim/ref/rsense-0.3')
+"let g:rsenseUseOmniFunc = 1
+"let g:rsenseHome = expand('~/.vim/ref/rsense-0.3')
 
-if !exists('g:neocomplcache_omni_patterns')
-  let g:neocomplcache_omni_patterns = {}
-endif
-let g:neocomplcache_omni_patterns.ruby = '[^. *\t]\.\w*\|\h\w*::'
+"if !exists('g:neocomplcache_omni_patterns')
+"  let g:neocomplcache_omni_patterns = {}
+"endif
+"let g:neocomplcache_omni_patterns.ruby = '[^. *\t]\.\w*\|\h\w*::'
   
-function! SetUpRubySetting()
-  setlocal completefunc=RSenseCompleteFunction
-  nmap <buffer>tj :RSenseJumpToDefinition<CR>
-  nmap <buffer>tk :RSenseWhereIs<CR>
-  nmap <buffer>td :RSenseTypeHelp<CR>
-endfunction
-autocmd FileType ruby,eruby,ruby.rspec call SetUpRubySetting()
+"function! SetUpRubySetting()
+"  setlocal completefunc=RSenseCompleteFunction
+"  nmap <buffer>tj :RSenseJumpToDefinition<CR>
+"  nmap <buffer>tk :RSenseWhereIs<CR>
+"  nmap <buffer>td :RSenseTypeHelp<CR>
+"endfunction
+"autocmd FileType ruby,eruby,ruby.rspec call SetUpRubySetting()
 
 " ------------------------------------
 " vim -b : edit binary using xxd-format!
@@ -234,6 +236,20 @@ let g:Tex_ViewRule_pdf = '/usr/bin/open -a Preview.app'
 "let g:Tex_ViewRule_pdf = '/usr/bin/open -a "Adobe Reader.app"'
 let g:Tex_ViewRule_ps = '/usr/bin/open'
 let g:Tex_ViewRule_dvi = '/usr/bin/open'
+
+" ------------------------------------
+" json 
+" brew install jq
+" ------------------------------------
+command! -nargs=? Jq call s:Jq(<f-args>)
+function! s:Jq(...)
+    if 0 == a:0
+        let l:arg = "."
+    else
+        let l:arg = a:1
+    endif
+    execute "%! jq \"" . l:arg . "\""
+endfunction
 
 " ------------------------------------
 " over
