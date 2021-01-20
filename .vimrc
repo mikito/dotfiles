@@ -46,36 +46,38 @@ command! Rv source $MYVIMRC
 set nocompatible
 filetype off
 
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
 
-Bundle 'gmarik/vundle'
+Plugin  'gmarik/vundle'
 
 " original repos on github
-Bundle 'vim-ruby/vim-ruby'
-Bundle 'Shougo/neocomplcache'
-"Bundle 'Shougo/neocomplcache-rsense'
-Bundle 'Shougo/neosnippet'
-Bundle 'Shougo/unite.vim'
-Bundle 'Shougo/neomru.vim'
-Bundle 'scrooloose/nerdtree'
-Bundle 'tpope/vim-rails'
-Bundle 'taichouchou2/vim-rsense'
-Bundle 'tpope/vim-endwise.git'
-Bundle 'kana/vim-fakeclip.git'
-Bundle 'osyo-manga/vim-over'
-Bundle 'LeafCage/yankround.vim'
-Bundle 'kien/ctrlp.vim'
-Bundle 'tpope/vim-fugitive'
+Plugin 'vim-ruby/vim-ruby'
+Plugin 'Shougo/neocomplcache'
+"Plugin 'Shougo/neocomplcache-rsense'
+Plugin 'Shougo/neosnippet'
+Plugin 'Shougo/unite.vim'
+Plugin 'Shougo/neomru.vim'
+Plugin 'scrooloose/nerdtree'
+Plugin 'tpope/vim-rails'
+Plugin 'taichouchou2/vim-rsense'
+Plugin 'tpope/vim-endwise.git'
+Plugin 'kana/vim-fakeclip.git'
+Plugin 'osyo-manga/vim-over'
+Plugin 'LeafCage/yankround.vim'
+Plugin 'kien/ctrlp.vim'
+Plugin 'tpope/vim-fugitive'
 " See https://qiita.com/c8112002/items/94f6d89bbd0c2ffcd53b
-Bundle 'rking/ag.vim'
+Plugin 'rking/ag.vim'
 
 " vim-scripts repos
-Bundle 'project.tar.gz'
+Plugin 'project.tar.gz'
 
 " non github repos
-"Bundle 'git://git.wincent.com/command-t.git'
-Bundle 'git://git.code.sf.net/p/vim-latex/vim-latex'
+"Plugin 'git://git.wincent.com/command-t.git'
+"Plugin 'git://git.code.sf.net/p/vim-latex/vim-latex'
+
+call vundle#end()
 
 filetype plugin indent on
 
